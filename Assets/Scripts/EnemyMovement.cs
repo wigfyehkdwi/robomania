@@ -16,7 +16,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Player")
         {
             Vector2 jumpForce = new Vector2(xForce, yForce);
             enemyRigidBody.AddForce(jumpForce);
@@ -33,6 +33,9 @@ public class EnemyMovement : MonoBehaviour
         {
             xDirection = -1;
             enemyRigidBody.AddForce(Vector2.left * xForce);
+        }
+        if (transform.position.y >= 5) {
+            enemyRigidBody.AddForce(Vector2.down * yForce);
         }
     }
 }
